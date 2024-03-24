@@ -1,57 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_other.c                                         :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:20:43 by apuddu            #+#    #+#             */
-/*   Updated: 2024/03/19 20:26:59 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/03/23 16:12:38 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-
-int	ft_atoi(const char *s)
-{
-	long	x;
-	int		i;
-	int		neg;
-
-	x = 0;
-	i = 0;
-	neg = 0;
-	if (s[0] == '-')
-	{
-		i++;
-		neg = 1;
-	}
-	if (s[0] == '+')
-	{
-		i++;
-	}
-	while (ft_isdigit(s[i]))
-	{
-		x *= 10;
-		x += s[i] - '0';
-	}
-	if (neg)
-		x = -x;
-	return ((int)x);
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*res;
-
-	if (nmemb > (size_t)-1 / size)
-		return (NULL);
-	res = malloc(size * nmemb);
-	if (res)
-		ft_bzero(res, size * nmemb);
-	return (res);
-}
 
 static char	*norminette_is_useless(int n, long pow, size_t dig, size_t i)
 {

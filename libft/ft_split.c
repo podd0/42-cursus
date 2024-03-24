@@ -1,39 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_custom_1.c                                      :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:22:02 by apuddu            #+#    #+#             */
-/*   Updated: 2024/03/19 20:22:05 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/03/23 20:28:52 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	size_t	l;
-	size_t	r;
-
-	l = 0;
-	r = ft_strlen(s1);
-	while (r && ft_strchr(set, s1[r - 1]))
-	{
-		r--;
-	}
-	if (r == 0)
-	{
-		return (ft_strdup(""));
-	}
-	while (ft_strchr(set, s1[l]))
-	{
-		l++;
-	}
-	return (ft_substr(s1, l, r - l));
-}
 
 static size_t	count(char *s, char c)
 {
@@ -99,6 +77,11 @@ char	**ft_split(char const *s, char c)
 	trimmed = ft_strtrim(s, chset);
 	if (trimmed == NULL)
 		return (NULL);
+	if (!trimmed[0])
+	{
+		free(trimmed);
+		return (ft_calloc(1, sizeof(char *)));
+	}
 	cnt = count(trimmed, c);
 	res = malloc((cnt + 1) * sizeof(char *));
 	if (res == NULL)

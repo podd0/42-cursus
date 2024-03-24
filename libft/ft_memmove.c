@@ -1,44 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_functional.c                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/19 23:38:51 by apuddu            #+#    #+#             */
-/*   Updated: 2024/03/19 23:53:15 by apuddu           ###   ########.fr       */
+/*   Created: 2024/03/23 16:18:26 by apuddu            #+#    #+#             */
+/*   Updated: 2024/03/23 17:33:18 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stddef.h>
-#include <stdlib.h>
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*res;
-	size_t	i;
-
-	res = malloc(ft_strlen(s));
-	if (res == NULL)
-		return (NULL);
-	i = 0;
-	while (s[i])
+	if (dest < src)
+		return (ft_memcpy(dest, src, n));
+	while (n > 0)
 	{
-		res[i] = f(i, s[i]);
-		i++;
+		n--;
+		((char *)dest)[n] = ((char *)src)[n];
 	}
-	return (res);
-}
-
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		f(i, &s[i]);
-		i++;
-	}
+	return (dest);
 }
