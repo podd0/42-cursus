@@ -4,6 +4,7 @@
 		"libft.h": "c",
 		"stddef.h": "c",
 		"cmath": "c",
-		"complex": "c"
+		"complex": "c",
+		"unistd.h": "c"
 	}
 }

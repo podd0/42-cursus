@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:27:01 by apuddu            #+#    #+#             */
-/*   Updated: 2024/03/23 18:54:32 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/03/24 23:51:03 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	if (!s)
 		return (NULL);
-	res = malloc(ft_strlen(s));
+	res = malloc(ft_strlen(s) + 1);
 	if (res == NULL)
 		return (NULL);
 	i = 0;

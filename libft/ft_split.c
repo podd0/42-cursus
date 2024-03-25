@@ -6,87 +6,67 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:22:02 by apuddu            #+#    #+#             */
-/*   Updated: 2024/03/23 20:28:52 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/03/25 21:01:28 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static size_t	count(char *s, char c)
+int	count(const char *s, char c)
 {
-	char	*it;
-	char	*it2;
-	size_t	cnt;
+	int	cnt;
 
-	cnt = 1;
-	it = s;
-	it2 = ft_strchr(it, c);
-	while (it2)
+	cnt = 0;
+	while (*s)
 	{
-		cnt++;
-		it = it2 + 1;
-		while (*it == c)
+		while (*s == c)
 		{
-			it++;
+			s++;
 		}
-		it2 = ft_strchr(it, c);
+		if (*s)
+			cnt++;
+		while (*s && *s != c)
+			s++;
 	}
-	return (cnt);
+	return (cnt + 1);
 }
 
-char	**populate_split(char *s, char **res, char c)
+char	**populate(char **arr, const char *s, char c)
 {
-	char	*it;
-	char	*it2;
+	size_t	len;
 	size_t	i;
 
 	i = 0;
-	it = s;
-	it2 = ft_strchr(it, c);
-	while (it2)
+	while (*s)
 	{
-		res[i] = ft_substr(it, 0, it2 - it);
-		if (res[i] == NULL)
-			return (NULL);
-		it = it2 + 1;
-		while (*it == c)
+		while (*s == c)
 		{
-			it++;
+			s++;
 		}
-		it2 = ft_strchr(it, c);
+		if (!*s)
+			break ;
+		len = 1;
+		while (s[len] && s[len] != c)
+		{
+			len++;
+		}
+		arr[i] = ft_substr(s, 0, len);
+		if (!arr[i])
+			return (NULL);
 		i++;
+		s = s + len;
 	}
-	res[i] = ft_strdup(it);
-	if (res[i] == NULL)
-		return (NULL);
-	res[i + 1] = NULL;
-	return (res);
+	arr[i] = NULL;
+	return (arr);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	chset[2];
-	char	*trimmed;
-	char	**res;
-	int		cnt;
+	char	**arr;
 
-	cnt = 0;
-	chset[0] = c;
-	chset[1] = 0;
-	trimmed = ft_strtrim(s, chset);
-	if (trimmed == NULL)
+	arr = malloc(count(s, c) * sizeof(char *));
+	if (!arr)
 		return (NULL);
-	if (!trimmed[0])
-	{
-		free(trimmed);
-		return (ft_calloc(1, sizeof(char *)));
-	}
-	cnt = count(trimmed, c);
-	res = malloc((cnt + 1) * sizeof(char *));
-	if (res == NULL)
-		return (NULL);
-	res = (populate_split(trimmed, res, c));
-	free(trimmed);
-	return (res);
+	return (populate(arr, s, c));
 }
