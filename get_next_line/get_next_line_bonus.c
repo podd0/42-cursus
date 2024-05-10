@@ -40,20 +40,6 @@ char	*consume_head(char *left, size_t len)
 	return (ret);
 }
 
-size_t	ft_strcpy(char *dst, char *src, size_t i)
-{
-	dst += i;
-	while (*src)
-	{
-		i++;
-		*dst = *src;
-		dst++;
-		src++;
-	}
-	*dst = '\0';
-	return (i);
-}
-
 char	*append_cum(char *cum, char *left, size_t end_cum, ssize_t b_read)
 {
 	char	t;
@@ -73,15 +59,11 @@ char	*append_cum(char *cum, char *left, size_t end_cum, ssize_t b_read)
 	return (cum);
 }
 
-char	*get_line(int fd, char **left)
+char	*get_line(int fd, char **left, size_t i, size_t size)
 {
 	char	*cum;
-	size_t	i;
-	size_t	size;
 	ssize_t	b_read;
 
-	size = (BUFFER_SIZE) * 2 + 1;
-	i = 0;
 	cum = malloc(size);
 	i = ft_strcpy(cum, *left, i);
 	b_read = read(fd, *left, BUFFER_SIZE);
@@ -120,5 +102,5 @@ char	*get_next_line(int fd)
 	{
 		return (consume_head(left[fd], i + 1));
 	}
-	return (get_line(fd, &left[fd]));
+	return (get_line(fd, &left[fd], 0, BUFFER_SIZE * 2 + 1));
 }

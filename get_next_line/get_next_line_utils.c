@@ -31,6 +31,20 @@ char	*double_cum(char *cum, size_t *csize)
 	return (res);
 }
 
+size_t	ft_strcpy(char *dst, char *src, size_t i)
+{
+	dst += i;
+	while (*src)
+	{
+		i++;
+		*dst = *src;
+		dst++;
+		src++;
+	}
+	*dst = '\0';
+	return (i);
+}
+
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;

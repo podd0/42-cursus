@@ -20,6 +20,7 @@
 char	*get_next_line(int fd);
 char	*double_cum(char *cum, size_t *csize);
 size_t	ft_strlen(const char *s);
+size_t	ft_strcpy(char *dst, char *src, size_t i);
 int		has_end(char *buf);
 
 #endif
