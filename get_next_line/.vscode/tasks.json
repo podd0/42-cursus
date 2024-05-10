@@ -1,0 +1,25 @@
+{
+    "tasks": [
+        {
+            "label": "porcod",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                // "-std=c++11",
+                "-O2",
+                "-Wall",
+                "-g",
+                "${file}",
+                "${fileDirname}/get_next_line*.c"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            
+        }
+    ],
+    "version": "2.0.0"
+}
