@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -76,7 +75,6 @@ char	*get_line(int fd, char **left, size_t i, size_t size)
 		if (b_read != -1)
 			return (append_cum(cum, *left, i, b_read));
 		i = ft_strcpy(cum, *left, i);
-		assert(i < size);
 		b_read = read(fd, *left, BUFFER_SIZE);
 	}
 	free(*left);
