@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"*.sage": "python",
+		"libft.h": "c",
+		"stdio.h": "c",
+		"printf_utils.h": "c",
+		"stddef.h": "c",
+		"stdlib.h": "c",
+		"stdarg.h": "c"
+	}
+}

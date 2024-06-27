@@ -14,7 +14,7 @@ SOURCES  := ft_atoi.c ft_bzero.c ft_calloc.c ft_isascii.c\
 INCLUDES := libft.h
 OBJECTS = $(SOURCES:.c=.o)
 
-CC = clang
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g 
 
 all: $(NAME)
