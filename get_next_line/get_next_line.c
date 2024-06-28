@@ -6,15 +6,11 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 00:58:19 by apuddu            #+#    #+#             */
-/*   Updated: 2024/05/10 19:00:41 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/06/29 00:36:50 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-<<<<<<< Updated upstream
-#include <stdio.h>
-=======
->>>>>>> Stashed changes
 #include <stdlib.h>
 #include <unistd.h>
 
