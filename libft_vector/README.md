@@ -1,6 +1,6 @@
 # Generate generic vectors
 This is a generic c++ like \<vector\>, made for 42 school.
-It's not a project, and it works gets added to libft.
+It's not a project, and it's designed to be added to libft.
 
 ## Requirements
 - python3
