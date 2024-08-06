@@ -15,3 +15,6 @@ void	NAME_resize(t_NAME *vec, int n);
 t_NAME	*NAME_init(int n, TYPE value);
 t_NAME	*NAME_uninit(int n);
 void	NAME_free(t_NAME *vec);
+t_NAME	*NAME_copy(t_NAME *vec);
+void	NAME_map(t_NAME *vec, void (*f)(TYPE));
+TYPE	NAME_back(t_NAME *vec);

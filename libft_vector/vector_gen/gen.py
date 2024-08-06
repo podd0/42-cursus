@@ -34,7 +34,7 @@ with open("../libft/vector.h", "w") as f:
 system("c_formatter_42 ../libft/vector.h")
 
 
-sources = ["vector.c", "vector2.c"]
+sources = ["vector.c", "vector2.c", "vector3.c"]
 system("rm ../libft/vector/*")
 for name, c_type in types.items():
 	for i, source_file in enumerate(sources):
