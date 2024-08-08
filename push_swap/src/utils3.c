@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 18:04:37 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/02 17:44:16 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/07 20:24:14 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@
 
 void	pa(t_ps *ps)
 {
+	if (ps->b->front == NULL)
+		abort_free_ps(ps);
 	dq_push_front(ps->a, dq_pop_front(ps->b));
 	vstr_push_back(ps->moves, "pa");
 }
 
 void	pb(t_ps *ps)
 {
+	if (ps->a->front == NULL)
+		abort_free_ps(ps);
 	dq_push_front(ps->b, dq_pop_front(ps->a));
 	vstr_push_back(ps->moves, "pb");
 }

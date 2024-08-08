@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 18:19:09 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/02 18:19:09 by apuddu           ###   ########.fr       */
+/*   Created: 2024/08/07 21:49:13 by apuddu            #+#    #+#             */
+/*   Updated: 2024/08/07 21:49:13 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_vi					*vi_uninit(int n);
 void					vi_free(t_vi *vec);
 t_vi					*vi_copy(t_vi *vec);
 void					vi_map(t_vi *vec, void (*f)(int));
+void					vi_map_sub(t_vi *vec, int (*f)(int));
 int						vi_back(t_vi *vec);
 
 struct					s_vl
@@ -51,6 +52,7 @@ t_vl					*vl_uninit(int n);
 void					vl_free(t_vl *vec);
 t_vl					*vl_copy(t_vl *vec);
 void					vl_map(t_vl *vec, void (*f)(long));
+void					vl_map_sub(t_vl *vec, long (*f)(long));
 long					vl_back(t_vl *vec);
 
 struct					s_vlu
@@ -71,6 +73,8 @@ t_vlu					*vlu_uninit(int n);
 void					vlu_free(t_vlu *vec);
 t_vlu					*vlu_copy(t_vlu *vec);
 void					vlu_map(t_vlu *vec, void (*f)(long unsigned int));
+void					vlu_map_sub(t_vlu *vec,
+							long unsigned int (*f)(long unsigned int));
 long unsigned int		vlu_back(t_vlu *vec);
 
 struct					s_vstr
@@ -91,6 +95,7 @@ t_vstr					*vstr_uninit(int n);
 void					vstr_free(t_vstr *vec);
 t_vstr					*vstr_copy(t_vstr *vec);
 void					vstr_map(t_vstr *vec, void (*f)(char *));
+void					vstr_map_sub(t_vstr *vec, char *(*f)(char *));
 char					*vstr_back(t_vstr *vec);
 
 #endif

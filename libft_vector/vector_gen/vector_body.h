@@ -17,4 +17,5 @@ t_NAME	*NAME_uninit(int n);
 void	NAME_free(t_NAME *vec);
 t_NAME	*NAME_copy(t_NAME *vec);
 void	NAME_map(t_NAME *vec, void (*f)(TYPE));
+void	NAME_map_sub(t_NAME *vec, TYPE (*f)(TYPE));
 TYPE	NAME_back(t_NAME *vec);

@@ -1,35 +1,41 @@
 NAME = push_swap
-LIBFT = libft/libft.a
 
 SRCDIR = .
 OBJDIR = .
 
-SOURCES  := $(wildcard *.c)
+SOURCES  := $(wildcard src/*.c) $(wildcard libft/*.c) $(wildcard libft/vector/*.c) 
+MAIN_SOURCES = $(wildcard main/*.c)
+BONUS_SOURCES = $(wildcard bonus/*.c)
 
 IDIR := printf
-OBJECTS = $(SOURCES:.c=.o) 
+OBJECTS = $(SOURCES:.c=.o)
+MAIN_OBJECTS = $(MAIN_SOURCES:.c=.o)
+BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra  -g -I./libft -I. -Werror # -fsanitize=address -fsanitize=undefined
+CFLAGS = -Wall -Wextra -g -I./libft -I. -I./src -Werror # -fsanitize=address -fsanitize=undefined
 
 all: $(NAME)
 
-libft:
-	make -C libft
+$(NAME): $(OBJECTS) $(MAIN_OBJECTS)
+	$(CC) -o $(NAME) $(OBJECTS) $(MAIN_OBJECTS) $(CFLAGS)
 
-$(NAME): $(OBJECTS) libft
-	$(CC) -o $(NAME) $(OBJECTS) $(LIBFT) $(CFLAGS)
+bonus: checker
+
+checker: $(OBJECTS) $(BONUS_OBJECTS)
+	$(CC) -o checker $(OBJECTS) $(BONUS_OBJECTS) $(CFLAGS)
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $?
+	$(CC) -c $(CFLAGS) $? -o $@
 
 clean:
-	rm -f $(OBJECTS)
+	rm -f $(OBJECTS) $(MAIN_OBJECTS) $(BONUS_OBJECTS)
 	make clean -C libft 
 
 fclean: clean
 	rm -f $(NAME)
 	make fclean -C libft 
+
 
 re: fclean all 
 

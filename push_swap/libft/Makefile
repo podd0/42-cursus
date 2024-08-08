@@ -9,7 +9,7 @@ INCLUDES := libft.h printf_utils.h
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -I. #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -I. -fsanitize=address
 
 all: $(NAME)
 
@@ -26,6 +26,9 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+# test: $(NAME) test.c
+# 	$(CC) test.c $(NAME) $(CFLAGS) -o test
 
 show:
 	echo $(SOURCES)

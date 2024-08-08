@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vlu_2.c                                            :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 21:49:14 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/07 21:49:14 by apuddu           ###   ########.fr       */
+/*   Created: 2024/03/29 00:58:26 by apuddu            #+#    #+#             */
+/*   Updated: 2024/04/30 22:08:08 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
-#include "vector.h"
-#include <stdlib.h>
-#include <unistd.h>
 
-long unsigned int	vlu_back(t_vlu *vec)
-{
-	return (vec->arr[vec->size - 1]);
-}
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+# include <stddef.h>
 
-void	vlu_map_sub(t_vlu *vec, long unsigned int (*f)(long unsigned int))
-{
-	int	i;
+char	*get_next_line(int fd);
+char	*double_cum(char *cum, size_t *csize);
+size_t	ft_strlen(const char *s);
+size_t	ft_strcpy(char *dst, char *src, size_t i);
+int		has_end(char *buf);
 
-	i = 0;
-	while (i < vec->size)
-	{
-		vec->arr[i] = f(vec->arr[i]);
-		i++;
-	}
-}
+#endif

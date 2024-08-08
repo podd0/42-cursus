@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:08:04 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/06 20:08:35 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/07 21:55:59 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ void	apply_rule(t_vstr *moves, t_rule *rule)
 	while (i < rule->a->size)
 	{
 		i++;
+		free(vstr_back(moves));
 		vstr_pop_back(moves);
 	}
 	i = 0;
 	while (i < rule->b->size)
 	{
-		vstr_push_back(moves, rule->b->arr[i]);
+		vstr_push_back(moves, ft_strdup(rule->b->arr[i]));
 		i++;
 	}
 }

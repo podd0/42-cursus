@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:19:32 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/06 20:23:07 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/07 21:44:55 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void					node_detach(t_node *node);
 void					node_attach_after(t_node *node, t_node *prev);
 void					node_attach_before(t_node *node, t_node *prev);
 
+void					freestr(char *str);
 void					dq_push_back(t_deque *dq, t_node *v);
 void					dq_push_front(t_deque *dq, t_node *v);
 t_node					*dq_pop_front(t_deque *dq);
@@ -81,6 +82,8 @@ void					rrb(t_ps *ps);
 void					rrr(t_ps *ps);
 void					sa(t_ps *ps);
 void					sb(t_ps *ps);
+void					abort_free_ps(t_ps *ps);
+void					ps_free(t_ps *ps);
 
 int						check_duplicates(t_vi *vec);
 void					from_string(t_vi *vec, char *str);
