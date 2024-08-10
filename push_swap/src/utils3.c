@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 18:04:37 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/07 20:24:14 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/10 14:38:15 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	pb(t_ps *ps)
 	vstr_push_back(ps->moves, "pb");
 }
 
-void	from_string(t_vi *vec, char *str)
+void	from_string(t_vi *vec, char *str, int *err)
 {
 	char	**splitted;
 	char	**it;
@@ -40,7 +40,7 @@ void	from_string(t_vi *vec, char *str)
 	it = splitted;
 	while (*it)
 	{
-		vi_push_back(vec, ft_atoi(*it));
+		vi_push_back(vec, ft_atoi_check(*it, err));
 		free(*it);
 		it++;
 	}

@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:10:55 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/06 20:16:22 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/10 14:46:25 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	print_dq(t_deque *dq)
-{
-	t_node	*curr;
-
-	curr = dq->front;
-	while (curr)
-	{
-		ft_printf("%d ", curr->value);
-		curr = curr->next;
-	}
-	ft_printf("\n");
-}
-
-void	print_ps(t_ps *ps)
-{
-	ft_printf("a: ");
-	print_dq(ps->a);
-	ft_printf("b: ");
-	print_dq(ps->b);
-}
-
 t_vi	*build_vi_run_checks(int argc, char **argv)
 {
 	t_vi	*vec;
 	int		i;
+	int		err;
 
 	i = 1;
+	err = 0;
 	vec = vi_uninit(0);
 	while (i < argc)
 	{
@@ -52,10 +33,10 @@ t_vi	*build_vi_run_checks(int argc, char **argv)
 			vi_free(vec);
 			exit(1);
 		}
-		from_string(vec, argv[i]);
+		from_string(vec, argv[i], &err);
 		i++;
 	}
-	if (!check_duplicates(vec))
+	if (err || !check_duplicates(vec))
 	{
 		ft_putstr_fd("Error\n", 2);
 		vi_free(vec);
@@ -95,4 +76,39 @@ int	subdiv(t_vi *vec, int x, int l, int r)
 		vec->arr[r] = t;
 	}
 	return (l);
+}
+
+int	ft_atoi_check_inner(const char *s, int *err, int neg)
+{
+	long	num;
+
+	num = 0;
+	while (ft_isdigit(*s))
+	{
+		num = num * 10 + *s - '0';
+		if (num > 2147483647)
+			*err = 1;
+		s++;
+	}
+	if (neg)
+		return ((int)-num);
+	return ((int)num);
+}
+
+int	ft_atoi_check(const char *s, int *err)
+{
+	int	neg;
+
+	neg = 0;
+	while (*s == ' ' || (9 <= *s && *s <= 13))
+		s++;
+	if (*s == '-')
+	{
+		s++;
+		neg = 1;
+		return (0);
+	}
+	else if (*s == '+')
+		s++;
+	return (ft_atoi_check_inner(s, err, neg));
 }

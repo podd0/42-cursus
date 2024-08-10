@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:19:32 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/07 21:44:55 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/10 14:45:06 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ void					abort_free_ps(t_ps *ps);
 void					ps_free(t_ps *ps);
 
 int						check_duplicates(t_vi *vec);
-void					from_string(t_vi *vec, char *str);
+void					from_string(t_vi *vec, char *str, int *err);
+int						ft_atoi_check(const char *s, int *err);
 int						check_alpha(char *s);
 int						check_duplicates(t_vi *vec);
 
@@ -105,6 +106,7 @@ int						get_mid(t_deque *ls, int len);
 void					rrota_n(t_ps *ps, int n);
 void					rrotb_n(t_ps *ps, int n);
 void					split_a(t_ps *ps, int size, int x, int top);
+void					small_sort(t_vi *vec, t_ps *ps);
 
 # define N_RULES 31
 #endif

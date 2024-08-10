@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 04:03:31 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/07 21:53:43 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/09 13:09:07 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,13 @@ int	main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		vec = build_vi_run_checks(argc, argv);
-		ps = vi_to_ps(vec);
 		size = vec->size;
+		ps = vi_to_ps(vec);
+		if (size <= 5)
+		{
+			small_sort(vec, ps);
+			return (0);
+		}
 		vi_free(vec);
 		quick_sort_a(ps, size, 0);
 		vstr_map_sub(ps->moves, (char *(*)(char *))ft_strdup);

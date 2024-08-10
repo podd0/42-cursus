@@ -3,8 +3,7 @@ from os import system
 from subprocess import run
 import subprocess
 
-a = (list(range(500)))
-a = [1, 1, 2, 3]
+a = (list(range(5)))
 err = 0
 for i in range(100):
 	shuffle(a)
