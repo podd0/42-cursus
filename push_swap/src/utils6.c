@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:10:55 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/10 14:46:25 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/10 17:24:44 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,22 @@ int	ft_atoi_check_inner(const char *s, int *err, int neg)
 	long	num;
 
 	num = 0;
+	if (!ft_isdigit(*s))
+	{
+		*err = 1;
+		return (0);
+	}
 	while (ft_isdigit(*s))
 	{
 		num = num * 10 + *s - '0';
-		if (num > 2147483647)
+		if (num > (2147483647l + neg))
 			*err = 1;
 		s++;
 	}
+	if (*s)
+		*err = 1;
+	if (*err)
+		return (0);
 	if (neg)
 		return ((int)-num);
 	return ((int)num);
@@ -106,7 +115,6 @@ int	ft_atoi_check(const char *s, int *err)
 	{
 		s++;
 		neg = 1;
-		return (0);
 	}
 	else if (*s == '+')
 		s++;
