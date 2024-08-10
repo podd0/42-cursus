@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:19:25 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/06 20:23:30 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/10 17:31:06 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	check_sorted(t_deque *dq, int size, int rev)
 	t_node	*it;
 
 	it = dq->front;
+	if (size == 0)
+		return (1);
 	size--;
 	while (size)
 	{
