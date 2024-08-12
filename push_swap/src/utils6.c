@@ -22,7 +22,7 @@ t_vi	*build_vi_run_checks(int argc, char **argv)
 	int		i;
 	int		err;
 
-	i = 1;
+	i = 1;ù
 	err = 0;
 	vec = vi_uninit(0);
 	while (i < argc)
