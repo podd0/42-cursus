@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid_2.c                                           :+:      :+:    :+:   */
+/*   vvec_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 23:42:31 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/13 23:45:41 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/13 23:42:31 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 #include "vector.h"
 #include <stdlib.h>
 #include <unistd.h>
-#include <fdf.h>
 
-t_vvec	*grid_back(t_grid *vec)
+t_vec3	vvec_back(t_vvec *vec)
 {
 	return (vec->arr[vec->size - 1]);
 }
 
-void	grid_map_sub(t_grid *vec, t_vvec *(*f)(t_vvec *))
+void	vvec_map_sub(t_vvec *vec, t_vec3 (*f)(t_vec3))
 {
 	int	i;
 

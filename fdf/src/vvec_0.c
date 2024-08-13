@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid_0.c                                           :+:      :+:    :+:   */
+/*   vvec_0.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 23:42:31 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/13 23:45:15 by apuddu           ###   ########.fr       */
+/*   Created: 2024/08/13 23:42:30 by apuddu            #+#    #+#             */
+/*   Updated: 2024/08/13 23:42:30 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 #include "vector.h"
 #include <stdlib.h>
 #include <unistd.h>
-#include <fdf.h>
 
-void	grid_push_back(t_grid *vec, t_vvec *elem)
+void	vvec_push_back(t_vvec *vec, t_vec3 elem)
 {
 	int	new_buf_size;
 	int	c_size;
@@ -27,14 +26,14 @@ void	grid_push_back(t_grid *vec, t_vvec *elem)
 		new_buf_size = vec->buf_size;
 		if (new_buf_size < 16)
 			new_buf_size = 16;
-		grid_resize(vec, new_buf_size * 2);
+		vvec_resize(vec, new_buf_size * 2);
 		vec->size = c_size;
 	}
 	vec->arr[vec->size] = elem;
 	vec->size++;
 }
 
-t_vvec	*grid_pop_back(t_grid *vec)
+t_vec3	vvec_pop_back(t_vvec *vec)
 {
 	if (vec->size == 0)
 	{
@@ -45,7 +44,7 @@ t_vvec	*grid_pop_back(t_grid *vec)
 	return (vec->arr[vec->size]);
 }
 
-void	grid_assign(t_grid *vec, int n, t_vvec *value)
+void	vvec_assign(t_vvec *vec, int n, t_vec3 value)
 {
 	int	i;
 
@@ -53,7 +52,7 @@ void	grid_assign(t_grid *vec, int n, t_vvec *value)
 	vec->size = n;
 	vec->buf_size = n;
 	free(vec->arr);
-	vec->arr = safe_alloc(n * sizeof(t_vvec *));
+	vec->arr = safe_alloc(n * sizeof(t_vec3));
 	while (i < n)
 	{
 		vec->arr[i] = value;
@@ -61,14 +60,14 @@ void	grid_assign(t_grid *vec, int n, t_vvec *value)
 	}
 }
 
-void	grid_resize(t_grid *vec, int n)
+void	vvec_resize(t_vvec *vec, int n)
 {
-	t_grid	old;
+	t_vvec	old;
 
 	old = *vec;
 	vec->size = n;
 	vec->buf_size = n;
-	vec->arr = safe_alloc(n * sizeof(t_vvec *));
-	ft_memcpy(vec->arr, old.arr, old.size * sizeof(t_vvec *));
+	vec->arr = safe_alloc(n * sizeof(t_vec3));
+	ft_memcpy(vec->arr, old.arr, old.size * sizeof(t_vec3));
 	free(old.arr);
 }
