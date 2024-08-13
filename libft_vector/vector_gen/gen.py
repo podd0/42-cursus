@@ -15,6 +15,7 @@ def template(filename):
 /*   Updated: {date} by {USER42}           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 """
 with open("pre_vector.h") as f:
 	pre_vector_h = f.read().replace("NAME", "vi").replace("TYPE", "int")
