@@ -1,2 +1,4 @@
-/__pycache__/*
+**/__pycache__/*
+libft_vector/libft/
 .vscode/
+*.o
