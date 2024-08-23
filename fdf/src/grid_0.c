@@ -6,15 +6,15 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 23:42:31 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/13 23:45:15 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/19 20:49:42 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "vector.h"
+#include <fdf.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fdf.h>
 
 void	grid_push_back(t_grid *vec, t_vvec *elem)
 {
@@ -38,7 +38,7 @@ t_vvec	*grid_pop_back(t_grid *vec)
 {
 	if (vec->size == 0)
 	{
-		write(2, "Error: pop empty vector\n", 24);
+		ft_putstr_fd("Error: pop empty vector\n", 2);
 		exit(1);
 	}
 	vec->size--;

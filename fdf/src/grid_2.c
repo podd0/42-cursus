@@ -12,9 +12,9 @@
 
 #include "libft.h"
 #include "vector.h"
+#include <fdf.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fdf.h>
 
 t_vvec	*grid_back(t_grid *vec)
 {

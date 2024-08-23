@@ -6,12 +6,13 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 23:42:31 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/13 23:42:31 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/14 01:43:11 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "vector.h"
+#include <fdf.h>
 #include <stdlib.h>
 #include <unistd.h>
 

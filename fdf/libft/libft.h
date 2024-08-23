@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:22:22 by apuddu            #+#    #+#             */
-/*   Updated: 2024/07/30 00:26:39 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/20 01:36:06 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,7 @@ t_buffer	to_base(unsigned int n, const char *base_repr, int base);
 t_buffer	ptr_print(void *n, const char *base_repr, int base);
 int			ft_printf(const char *f, ...);
 void		*safe_alloc(int bytes);
+int			imax(int a, int b);
+int			imin(int a, int b);
 
 #endif

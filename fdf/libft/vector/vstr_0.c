@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 21:49:14 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/07 21:49:14 by apuddu           ###   ########.fr       */
+/*   Created: 2024/08/17 02:39:21 by apuddu            #+#    #+#             */
+/*   Updated: 2024/08/19 20:52:35 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 #include "vector.h"
 #include <stdlib.h>
@@ -36,7 +37,7 @@ char	*vstr_pop_back(t_vstr *vec)
 {
 	if (vec->size == 0)
 	{
-		write(2, "Error: pop empty vector\n", 24);
+		ft_putstr_fd("Error: pop empty vector\n", 2);
 		exit(1);
 	}
 	vec->size--;

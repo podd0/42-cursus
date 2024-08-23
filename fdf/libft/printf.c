@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 23:04:17 by apuddu            #+#    #+#             */
-/*   Updated: 2024/07/30 01:01:44 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/19 20:51:22 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ int	ft_printf(const char *format, ...)
 	va_start(ptr, format);
 	size = ft_strlen(format) + 10;
 	res = ft_printf_core(&format, &size, ptr);
-	write(1, res.str, res.len);
+	if (0 > write(1, res.str, res.len))
+		exit(1);
 	free(res.str);
 	return (res.len);
 }

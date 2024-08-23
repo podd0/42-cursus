@@ -20,26 +20,17 @@ def rotz(theta):
 					[sin(theta), cos(theta), 0],
 					[0, 0, 1]])
 
-
 def to_loc(vec, frame):
 	return np.dot(vec, frame.T)
 
 def to_world(vec, frame):
 	frt = frame
+	print("to _world :",vec, '\n', frame)
+	return np.dot(frt, vec)
 	return vec[0]*frt[0]+ vec[1]*frt[1] + vec[2]*frt[2]
 
-frame1 = rotz(45).T
 
-print(frame1)
-# exit()
-frame2 = frame1.copy()
-# print(to_loc(frame1[0], frame1))
-# print(np.dot(rotx(45), to_loc(frame1[0], frame1)))
-# print(to_world(np.array([1, 0, 0]), frame1))
-# exit()
-for i in range(3):
-	frame2[i] = to_world(np.dot(rotx(45), to_loc(frame1[i], frame1)), frame1)
 
-for x in frame2:
-	print(list(x))
-# print(repr(frame2.T))
+frame1 = rotz(45)
+frame2 = to_world(rotx(-45), frame1)
+print(frame2)

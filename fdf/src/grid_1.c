@@ -12,9 +12,9 @@
 
 #include "libft.h"
 #include "vector.h"
+#include <fdf.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fdf.h>
 
 t_grid	*grid_init(int n, t_vvec *value)
 {

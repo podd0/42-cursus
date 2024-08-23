@@ -6,12 +6,13 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 23:42:30 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/13 23:42:30 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/19 20:50:05 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "vector.h"
+#include <fdf.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -37,7 +38,7 @@ t_vec3	vvec_pop_back(t_vvec *vec)
 {
 	if (vec->size == 0)
 	{
-		write(2, "Error: pop empty vector\n", 24);
+		ft_putstr_fd("Error: pop empty vector\n", 2);
 		exit(1);
 	}
 	vec->size--;
