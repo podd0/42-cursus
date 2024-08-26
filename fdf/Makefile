@@ -12,7 +12,7 @@ MAIN_OBJECTS = $(MAIN_SOURCES:.c=.o)
 BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -g -I./libft -I./src -I./minilibx-linux -Werror #-fsanitize=address -fsanitize=undefined
+CFLAGS = -O3 -Wall -Wextra -g -I./libft -I./src -I./minilibx-linux -Werror #-fsanitize=address -fsanitize=undefined
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 11:38:42 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/22 14:17:22 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/08/26 20:15:06 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	clamp_draw(t_point *a, t_point *b, t_img *img, t_line_drawer draw)
 				/ v.x));
 	fb = fminf(fb, fmaxf((-WIN_H / 2 - a->pos.y) / v.y, (WIN_H / 2 - a->pos.y)
 				/ v.y));
+	if (fb < fa)
+		return ;
 	a->pos = interp(a->pos, b->pos, fa);
 	b->pos = interp(a->pos, b->pos, fb);
 	a->color = col_from_vec(interp(col_to_vec(a->color), col_to_vec(b->color),
