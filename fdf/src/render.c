@@ -41,10 +41,8 @@ void	clamp_draw(t_point *a, t_point *b, t_img *img, t_line_drawer draw)
 				/ v.y));
 	fb = fminf(1.0, fmaxf((-WIN_W / 2 - a->pos.x) / v.x, (WIN_W / 2 - a->pos.x)
 				/ v.x));
-	fb = fminf(fb, fmaxf((-WIN_W / 2 - a->pos.x) / v.x, (WIN_W / 2 - a->pos.x)
-				/ v.x));
-	if (fa > fb)
-		return ;
+	fb = fminf(fb, fmaxf((-WIN_H / 2 - a->pos.y) / v.y, (WIN_H / 2 - a->pos.y)
+				/ v.y));
 	a->pos = interp(a->pos, b->pos, fa);
 	b->pos = interp(a->pos, b->pos, fb);
 	a->color = col_from_vec(interp(col_to_vec(a->color), col_to_vec(b->color),

@@ -28,7 +28,7 @@ void	draw_line_persp(t_point a, t_point b, t_img *img, t_full *full)
 	v = sub(b.pos, a.pos);
 	if (a.pos.z < 0.01)
 	{
-		if (v.z < 0.005)
+		if (v.z < 0.01)
 			return ;
 		alpha = (0.01 - a.pos.z) / v.z;
 		a.pos = add(a.pos, scale(alpha, v));

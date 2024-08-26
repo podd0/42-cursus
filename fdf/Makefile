@@ -1,5 +1,5 @@
 NAME = fdf
-
+BONUS = fdf_bonus
 SRCDIR = .
 OBJDIR = .
 
@@ -12,12 +12,17 @@ MAIN_OBJECTS = $(MAIN_SOURCES:.c=.o)
 BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
 CC = gcc
-CFLAGS = -O3 -Wall -Wextra -g -I./libft -I./src -I./minilibx-linux -Werror # -fsanitize=address -fsanitize=undefined
+CFLAGS = -Wall -Wextra -g -I./libft -I./src -I./minilibx-linux -Werror #-fsanitize=address -fsanitize=undefined
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(MAIN_OBJECTS)
 	$(CC) -o $(NAME) $(OBJECTS) $(MAIN_OBJECTS) $(CFLAGS) -Lminilibx-linux -lmlx -lXext -lX11 -lm -lz
+
+bonus: fdf_bonus
+
+$(BONUS):  $(OBJECTS) $(BONUS_OBJECTS)
+	$(CC) -o $(BONUS) $(OBJECTS) $(BONUS_OBJECTS) $(CFLAGS) -Lminilibx-linux -lmlx -lXext -lX11 -lm -lz
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $? -o $@

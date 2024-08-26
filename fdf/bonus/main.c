@@ -17,20 +17,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int	simple_controller(int key, t_full *ctx)
-{
-	if (key == 65307)
-	{
-		mlx_loop_end(ctx->mlx);
-		return (0);
-	}
-	return (0);
-}
-
 void	set_defaults(t_full *ctx)
 {
 	ctx->render = render;
+	ctx->render_inactive = render_persp;
 	ctx->line_drawer = draw_line;
+	ctx->line_drawer_inactive = draw_line_aa;
 	ctx->scale = 1.0;
 	ctx->img_plane = 500.0;
 }
@@ -50,7 +42,8 @@ int	main(int argc, char **argv)
 	set_defaults(&full);
 	full.current = render(full.mlx, full.ctx, full.camera, &full);
 	mlx_put_image_to_window(full.mlx, full.mlx_win, full.current.img, 0, 0);
-	mlx_hook(full.mlx_win, 2, 1L << 0, simple_controller, &full);
+	print_menu(&full);
+	mlx_hook(full.mlx_win, 2, 1L << 0, controller, &full);
 	mlx_hook(full.mlx_win, 17, 1L << 17, mlx_loop_end, full.mlx);
 	mlx_loop(full.mlx);
 	mlx_destroy_image(full.mlx, full.current.img);
