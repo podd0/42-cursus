@@ -37,7 +37,7 @@ clean:
 	make clean -C minilibx-linux
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS)
 	make fclean -C libft 
 
 
