@@ -2,6 +2,7 @@ NAME = fdf
 BONUS = fdf_bonus
 SRCDIR = .
 OBJDIR = .
+MLX = minilibx-linux/libmlx.a
 
 SOURCES  := $(wildcard src/*.c) $(wildcard libft/*.c) $(wildcard libft/vector/*.c) 
 MAIN_SOURCES = $(wildcard main/*.c)
@@ -16,12 +17,15 @@ CFLAGS = -O3 -Wall -Wextra -g -I./libft -I./src -I./minilibx-linux -Werror #-fsa
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS) $(MAIN_OBJECTS)
+$(MLX):
+	make -C minilibx-linux
+
+$(NAME): $(OBJECTS) $(MAIN_OBJECTS) $(MLX)
 	$(CC) -o $(NAME) $(OBJECTS) $(MAIN_OBJECTS) $(CFLAGS) -Lminilibx-linux -lmlx -lXext -lX11 -lm -lz
 
 bonus: fdf_bonus
 
-$(BONUS):  $(OBJECTS) $(BONUS_OBJECTS)
+$(BONUS):  $(OBJECTS) $(BONUS_OBJECTS) $(MLX)
 	$(CC) -o $(BONUS) $(OBJECTS) $(BONUS_OBJECTS) $(CFLAGS) -Lminilibx-linux -lmlx -lXext -lX11 -lm -lz
 
 %.o: %.c
@@ -30,6 +34,7 @@ $(BONUS):  $(OBJECTS) $(BONUS_OBJECTS)
 clean:
 	rm -f $(OBJECTS) $(MAIN_OBJECTS) $(BONUS_OBJECTS)
 	make clean -C libft 
+	make clean -C minilibx-linux
 
 fclean: clean
 	rm -f $(NAME)
