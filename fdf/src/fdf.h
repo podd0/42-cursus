@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 13:30:14 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/23 17:22:45 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/09/04 15:22:14 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,16 @@ typedef void					(*t_line_drawer)(t_point a, t_point b,
 typedef t_img					(*t_render)(void *mlx, t_context ctx,
 						t_frame camera, t_full *full);
 
+struct							s_controls
+{
+	int	arrows[4];
+	int zoom;
+	int	delta_x;
+	int	delta_y;
+};
+
+typedef	struct s_controls t_controls;
+
 struct							s_full
 {
 	t_context					ctx;
@@ -132,6 +142,7 @@ struct							s_full
 	t_line_drawer				line_drawer;
 	t_line_drawer				line_drawer_inactive;
 	float						img_plane;
+	t_controls					controls;
 };
 
 typedef struct s_fuck_norminette
