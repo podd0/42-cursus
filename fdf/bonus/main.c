@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:00:13 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/23 16:16:13 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/09/10 16:56:59 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <mlx.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <libft.h>
 
 void	set_defaults(t_full *ctx)
 {
@@ -25,6 +26,15 @@ void	set_defaults(t_full *ctx)
 	ctx->line_drawer_inactive = draw_line_aa;
 	ctx->scale = 1.0;
 	ctx->img_plane = 500.0;
+	ft_memset(&ctx->controls, 0, sizeof(t_controls));
+}
+
+void	set_hooks(t_full *full)
+{
+	mlx_hook(full->mlx_win, 2, 1L << 0, handle_key_down, full);
+	mlx_hook(full->mlx_win, 3, 1L << 1, handle_key_up, full);
+	mlx_hook(full->mlx_win, 17, 1L << 17, mlx_loop_end, full->mlx);
+	mlx_loop_hook(full->mlx, loop_hook, full);
 }
 
 int	main(int argc, char **argv)
@@ -40,14 +50,14 @@ int	main(int argc, char **argv)
 	full.mlx_win = mlx_new_window(full.mlx, 1000, 1000, "fdf");
 	full.ctx = parse_file(argv[1]);
 	set_defaults(&full);
+	set_hooks(&full);
 	full.current = render(full.mlx, full.ctx, full.camera, &full);
 	mlx_put_image_to_window(full.mlx, full.mlx_win, full.current.img, 0, 0);
 	print_menu(&full);
-	mlx_hook(full.mlx_win, 2, 1L << 0, controller, &full);
-	mlx_hook(full.mlx_win, 17, 1L << 17, mlx_loop_end, full.mlx);
 	mlx_loop(full.mlx);
 	mlx_destroy_image(full.mlx, full.current.img);
 	mlx_destroy_window(full.mlx, full.mlx_win);
+	mlx_do_key_autorepeaton(full.mlx);
 	mlx_destroy_display(full.mlx);
 	free(full.mlx);
 	grid_map(full.ctx.grid, vvec_free);

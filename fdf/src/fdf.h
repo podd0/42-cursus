@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 13:30:14 by apuddu            #+#    #+#             */
-/*   Updated: 2024/09/04 15:22:14 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/09/10 17:56:29 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,13 +121,14 @@ typedef t_img					(*t_render)(void *mlx, t_context ctx,
 
 struct							s_controls
 {
-	int	arrows[4];
-	int zoom;
-	int	delta_x;
-	int	delta_y;
+	int							arrows[4];
+	int							zoom;
+	int							delta_x;
+	int							delta_y;
+	int							delta_z;
 };
 
-typedef	struct s_controls t_controls;
+typedef struct s_controls		t_controls;
 
 struct							s_full
 {
@@ -215,10 +216,19 @@ void							draw_line(t_point a, t_point b, t_img *img);
 t_point							point_at(t_context *ctx, t_frame camera, int i,
 									int j);
 
-int								controller(int key, t_full *ctx);
+int								handle_key_down(int key, t_full *ctx);
 void							set_defaults(t_full *ctx);
-void							handle_rotate(int key, t_full *ctx);
+void							handle_rotate(int *arrows, t_full *ctx);
 void							adjust_z_axis(int key, t_full *ctx);
 void							print_menu(t_full *ctx);
+int								loop_hook(t_full *ctx);
+int								handle_key_up(int key, t_full *ctx);
+void							set_movement(int key, t_controls *controls,
+									int delta);
+void							toggle_antialiasing(t_full *ctx);
+void							toggle_perspective(t_full *ctx);
+void							move_camera(t_frame *camera,
+									t_controls *controls);
+t_frame							zoom(t_frame camera, float value);
 
 #endif

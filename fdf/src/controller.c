@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:19:02 by apuddu            #+#    #+#             */
-/*   Updated: 2024/08/23 17:22:45 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/09/10 17:58:03 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,14 @@ t_frame	zoom(t_frame camera, float value)
 	return (camera);
 }
 
-void	move_camera(t_frame *camera, int key)
+void	move_camera(t_frame *camera, t_controls *controls)
 {
 	float	scaling;
 
 	scaling = 10 / (dot(camera->y, camera->y));
-	if (key == 'w')
-		camera->o = sub(camera->o, scale(scaling, camera->y));
-	else if (key == 's')
-		camera->o = add(camera->o, scale(scaling, camera->y));
-	else if (key == 'a')
-		camera->o = sub(camera->o, scale(scaling, camera->x));
-	else if (key == 'd')
-		camera->o = add(camera->o, scale(scaling, camera->x));
+	camera->o = add(camera->o, scale(scaling * controls->delta_y, camera->y));
+	camera->o = add(camera->o, scale(scaling * controls->delta_x, camera->x));
+	camera->o = add(camera->o, scale(scaling * controls->delta_z, camera->z));
 }
 
 void	toggle_perspective(t_full *ctx)
@@ -53,31 +48,18 @@ void	toggle_antialiasing(t_full *ctx)
 	ctx->line_drawer_inactive = temp;
 }
 
-int	controller(int key, t_full *ctx)
+void	set_movement(int key, t_controls *controls, int delta)
 {
-	if (key == 65307)
-	{
-		mlx_loop_end(ctx->mlx);
-		return (0);
-	}
-	if (key >= 65361 && key <= 65364)
-		handle_rotate(key - 65361, ctx);
-	if (key == 65451 || key == 43)
-		ctx->scale *= 1.1;
-	if (key == 65453 || key == 45)
-		ctx->scale /= 1.1;
-	if (key == 'w' || key == 'a' || key == 's' || key == 'd')
-		move_camera(&(ctx->camera), key);
-	if (key == 'p')
-		toggle_perspective(ctx);
-	if (key == 'l')
-		toggle_antialiasing(ctx);
-	if (key == ',' || key == '.')
-		adjust_z_axis(key, ctx);
-	mlx_destroy_image(ctx->mlx, ctx->current.img);
-	ctx->current = (ctx->render)(ctx->mlx, ctx->ctx, zoom(ctx->camera,
-				ctx->scale), ctx);
-	mlx_put_image_to_window(ctx->mlx, ctx->mlx_win, ctx->current.img, 0, 0);
-	print_menu(ctx);
-	return (0);
+	if (key == 'w')
+		controls->delta_y += -delta;
+	else if (key == 's')
+		controls->delta_y += delta;
+	else if (key == 'a')
+		controls->delta_x += -delta;
+	else if (key == 'd')
+		controls->delta_x += delta;
+	else if (key == ',')
+		controls->delta_z += -delta;
+	else if (key == '.')
+		controls->delta_z += delta;
 }
