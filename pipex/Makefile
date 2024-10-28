@@ -6,7 +6,7 @@
 #    By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/10 18:11:01 by apuddu            #+#    #+#              #
-#    Updated: 2024/09/10 18:12:00 by apuddu           ###   ########.fr        #
+#    Updated: 2024/09/17 17:25:42 by apuddu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SOURCES := get_next_line_bonus.c get_next_line_utils_bonus.c pipex.c pipex_utils
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -g -I. -I./libft -Werror -fsanitize=address -fsanitize=undefined
+CFLAGS = -Wall -Wextra -g -I. -I./libft -Werror #-fsanitize=address -fsanitize=undefined
 
 all: $(NAME)
 
