@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:27:19 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/28 22:49:02 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/10/29 19:29:47 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_ctx
 	int				eat_limit;
 	int				*forks;
 	pthread_mutex_t	*mut;
+	pthread_mutex_t	mut_death;
 	int				end_simulation;
 }	t_ctx;
 

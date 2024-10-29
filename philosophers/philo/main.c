@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:26:32 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/28 22:44:18 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/10/29 19:30:48 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	ctx_init(t_ctx *ctx, int argc, char **argv)
 		pthread_mutex_init(ctx->mut + i, NULL);
 		i++;
 	}
+	pthread_mutex_init(&ctx->mut_death, NULL);
+
 	ctx->end_simulation = 0;
 }
 
