@@ -6,17 +6,19 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:19:52 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/29 11:46:13 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/10/29 12:58:15 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
+// being nice helps in balancing the load when n is odd
 void	think(t_philo *philo)
 {
 	check_dead(philo);
 	printf("%ld %d is thinking\n", ft_time(), philo->id);
-	if ((philo->ctx->n & 1) && philo->ctx->time_sleep < philo->ctx->time_eat + 10) // being nice helps in balancing the load
+	if ((philo->ctx->n & 1) && philo->ctx->time_sleep < philo->ctx->time_eat
+		+ 10)
 		my_sleep(philo->ctx->time_eat - philo->ctx->time_sleep + 10, philo);
 }
 
@@ -44,11 +46,9 @@ int	*philosopher(t_philo *philo)
 
 	eat_limit = philo->ctx->eat_limit;
 	philo->etod = philo->ctx->time_die + ft_time();
-	if(philo->id & 1)
+	if (philo->id & 1)
 	{
-		// printf("sleeppino start %d\n", philo->id);
-		my_sleep(philo->ctx->time_eat/3, philo);
-		// printf("sleeppino end\n");
+		my_sleep(philo->ctx->time_eat / 3, philo);
 	}
 	while (eat_limit != 0)
 	{
