@@ -24,7 +24,7 @@ TYPE	NAME_pop_back(t_NAME *vec)
 {
 	if (vec->size == 0)
 	{
-		write(2, "Error: pop empty vector\n", 24);
+		(void) !write(2, "Error: pop empty vector\n", 24);
 		exit(1);
 	}
 	vec->size--;
