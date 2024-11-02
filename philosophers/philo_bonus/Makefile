@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+         #
+#    By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/03 18:13:07 by apuddu            #+#    #+#              #
-#    Updated: 2024/10/29 19:54:13 by apuddu           ###   ########.fr        #
+#    Updated: 2024/10/30 16:11:49 by apuddu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SOURCES  := atoi.c  main.c  philosopher.c  philosopher_utils.c  utils.c
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -I. -pthread 
+CFLAGS = -Wall -Wextra -Werror -g -I. -pthread #-fsanitize=address -fsanitize=undefined
 
 all: $(NAME)
 

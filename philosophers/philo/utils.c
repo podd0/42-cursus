@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 17:32:40 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/29 19:50:16 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/10/29 23:26:50 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_dead(t_philo *philo)
 	{
 		pthread_mutex_unlock(&philo->ctx->mut_death);
 		pthread_exit(NULL);
-	}	
+	}
 	if (philo->etod < ft_time())
 	{
 		die(philo);
@@ -55,7 +55,6 @@ void	my_sleep(long time, t_philo *philo)
 	{
 		time = (philo->etod - now) * 1000;
 		usleep(time);
-
 		pthread_mutex_lock(&philo->ctx->mut_death);
 		die(philo);
 		pthread_mutex_unlock(&philo->ctx->mut_death);

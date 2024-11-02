@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:27:19 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/29 09:31:23 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/10/29 23:17:06 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/time.h>
 # include <semaphore.h>
 # include <fcntl.h>
+# include <errno.h>
 
 typedef struct s_ctx
 {
@@ -29,6 +30,7 @@ typedef struct s_ctx
 	int		time_sleep;
 	int		eat_limit;
 	int		end_simulation;
+	sem_t	*write_lock;
 	sem_t	*sem;
 }	t_ctx;
 

@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:26:32 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/29 09:46:12 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/10/30 16:15:20 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,30 @@ void	ctx_init(t_ctx *ctx, int argc, char **argv)
 	else
 		ctx->eat_limit = -1;
 	ctx->end_simulation = 0;
+	if (sem_unlink("/sem") != 0 && errno != ENOENT)
+	{
+		printf("error : sem open\n");
+		exit(1);
+	}
 	ctx->sem = sem_open("/sem", O_CREAT, 0644, ctx->n);
+	if (sem_unlink("/wr") != 0 && errno != ENOENT)
+	{
+		printf("error : sem open\n");
+		exit(1);
+	}
+	ctx->write_lock = sem_open("/wr", O_CREAT, 0644, 1);
 }
 
 void	multi_free(void *a, void *b, void *c, void *d)
 {
-	free(a);
-	free(b);
-	free(c);
-	free(d);
+	if (a)
+		free(a);
+	if (b)
+		free(b);
+	if (c)
+		free(c);
+	if (d)
+		free(d);
 }
 
 void	core(t_ctx ctx, pthread_t *threads, t_philo *args)
@@ -80,6 +95,7 @@ void	core(t_ctx ctx, pthread_t *threads, t_philo *args)
 	}
 	multi_free(threads, args, NULL, NULL);
 	sem_unlink("/sem");
+	sem_unlink("/wr");
 }
 
 int	main(int argc, char **argv)
@@ -94,4 +110,5 @@ int	main(int argc, char **argv)
 	threads = malloc(sizeof(pthread_t) * ctx.n);
 	args = malloc(sizeof(t_philo) * ctx.n);
 	core(ctx, threads, args);
+	
 }

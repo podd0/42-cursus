@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 17:32:40 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/29 19:49:57 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/10/29 23:25:30 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,28 @@ long	ft_time(void)
 
 void	die(t_philo *philo)
 {
+	if (philo->ctx->end_simulation)
+	{
+		sem_post(philo->ctx->write_lock);
+		pthread_exit(NULL);
+	}
 	philo->ctx->end_simulation = 1;
 	printf("%ld %d died\n", ft_time(), philo->id);
+	sem_post(philo->ctx->write_lock);
 	pthread_exit(NULL);
 }
 
 void	check_dead(t_philo *philo)
 {
+	if (philo->ctx->end_simulation)
+	{
+		sem_post(philo->ctx->write_lock);
+		pthread_exit(NULL);
+	}
 	if (philo->etod < ft_time())
 	{
 		die(philo);
 	}
-	if (philo->ctx->end_simulation == 1)
-		pthread_exit(NULL);
 }
 
 void	my_sleep(long time, t_philo *philo)
@@ -46,7 +55,9 @@ void	my_sleep(long time, t_philo *philo)
 	{
 		time = (philo->etod - now) * 1000;
 		usleep(time);
+		sem_wait(philo->ctx->write_lock);
 		die(philo);
+		sem_post(philo->ctx->write_lock);
 	}
 	else
 		usleep(time * 1000);

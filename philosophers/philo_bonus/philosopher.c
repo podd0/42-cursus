@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:19:52 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/29 12:58:15 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/10/29 23:20:38 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 // being nice helps in balancing the load when n is odd
 void	think(t_philo *philo)
 {
+	sem_wait(philo->ctx->write_lock);
 	check_dead(philo);
 	printf("%ld %d is thinking\n", ft_time(), philo->id);
+	sem_post(philo->ctx->write_lock);
 	if ((philo->ctx->n & 1) && philo->ctx->time_sleep < philo->ctx->time_eat
 		+ 10)
 		my_sleep(philo->ctx->time_eat - philo->ctx->time_sleep + 10, philo);
@@ -24,8 +26,10 @@ void	think(t_philo *philo)
 
 void	philo_sleep(t_philo *philo)
 {
+	sem_wait(philo->ctx->write_lock);
 	check_dead(philo);
 	printf("%ld %d is sleeping\n", ft_time(), philo->id);
+	sem_post(philo->ctx->write_lock);
 	my_sleep(philo->ctx->time_sleep, philo);
 }
 
@@ -34,8 +38,10 @@ void	eat(t_philo *philo)
 	take_fork(philo);
 	take_fork(philo);
 	philo->etod = ft_time() + philo->ctx->time_die;
+	sem_wait(philo->ctx->write_lock);
 	check_dead(philo);
 	printf("%ld %d is eating\n", ft_time(), philo->id);
+	sem_post(philo->ctx->write_lock);
 	my_sleep(philo->ctx->time_eat, philo);
 	drop_forks(philo);
 }

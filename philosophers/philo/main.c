@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:26:32 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/29 19:30:48 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/10/30 16:25:49 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	ctx_init(t_ctx *ctx, int argc, char **argv)
 		i++;
 	}
 	pthread_mutex_init(&ctx->mut_death, NULL);
-
 	ctx->end_simulation = 0;
 }
 
@@ -90,6 +89,10 @@ void	core(t_ctx ctx, pthread_t *threads, t_philo *args)
 		pthread_join(threads[i], NULL);
 		i++;
 	}
+	i = 0;
+	while (i < ctx.n)
+		pthread_mutex_destroy(ctx.mut + i);
+	pthread_mutex_destroy(ctx.mut_death);
 	multi_free(threads, args, ctx.mut, ctx.forks);
 }
 
