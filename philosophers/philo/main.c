@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:26:32 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/30 16:25:49 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/11/12 17:18:19 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	core(t_ctx ctx, pthread_t *threads, t_philo *args)
 	}
 	i = 0;
 	while (i < ctx.n)
-		pthread_mutex_destroy(ctx.mut + i);
-	pthread_mutex_destroy(ctx.mut_death);
+		pthread_mutex_destroy(ctx.mut + i++);
+	pthread_mutex_destroy(&ctx.mut_death);
 	multi_free(threads, args, ctx.mut, ctx.forks);
 }
 

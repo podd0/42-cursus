@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:27:19 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/29 23:17:06 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/11/12 20:42:35 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <semaphore.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <sys/wait.h>
+# include <signal.h>
 
 typedef struct s_ctx
 {
@@ -29,7 +31,6 @@ typedef struct s_ctx
 	int		time_eat;
 	int		time_sleep;
 	int		eat_limit;
-	int		end_simulation;
 	sem_t	*write_lock;
 	sem_t	*sem;
 }	t_ctx;
@@ -46,8 +47,8 @@ int		ft_atoi(const char *s);
 long	ft_time(void);
 void	my_sleep(long time, t_philo *philo);
 void	check_dead(t_philo *philo);
-
+void	ctx_init(t_ctx *ctx, int argc, char **argv);
 void	drop_forks(t_philo *philo);
 void	take_fork(t_philo *philo);
-int		*philosopher(t_philo *philo);
+void	philosopher(t_philo *philo);
 #endif

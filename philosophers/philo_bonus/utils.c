@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 17:32:40 by apuddu            #+#    #+#             */
-/*   Updated: 2024/10/29 23:25:30 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/11/12 19:58:03 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,27 @@
 
 long	ft_time(void)
 {
+	static long		start = 0;
 	struct timeval	tv;
 
+	if (start == 0)
+	{
+		gettimeofday(&tv, NULL);
+		start = (long)tv.tv_sec * 1000 + tv.tv_usec / 1000;
+		return (0);
+	}
 	gettimeofday(&tv, NULL);
-	return ((long)tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	return ((long)tv.tv_sec * 1000 + tv.tv_usec / 1000 - start);
 }
 
 void	die(t_philo *philo)
 {
-	if (philo->ctx->end_simulation)
-	{
-		sem_post(philo->ctx->write_lock);
-		pthread_exit(NULL);
-	}
-	philo->ctx->end_simulation = 1;
 	printf("%ld %d died\n", ft_time(), philo->id);
-	sem_post(philo->ctx->write_lock);
-	pthread_exit(NULL);
+	exit(1);
 }
 
 void	check_dead(t_philo *philo)
 {
-	if (philo->ctx->end_simulation)
-	{
-		sem_post(philo->ctx->write_lock);
-		pthread_exit(NULL);
-	}
 	if (philo->etod < ft_time())
 	{
 		die(philo);

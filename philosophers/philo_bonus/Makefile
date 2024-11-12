@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+         #
+#    By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/03 18:13:07 by apuddu            #+#    #+#              #
-#    Updated: 2024/10/30 16:11:49 by apuddu           ###   ########.fr        #
+#    Updated: 2024/11/12 20:42:47 by apuddu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo_bonus
 SRCDIR = .
 OBJDIR = .
 
-SOURCES  := atoi.c  main.c  philosopher.c  philosopher_utils.c  utils.c
+SOURCES  := atoi.c  main.c  philosopher.c  philosopher_utils.c  utils.c init.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
