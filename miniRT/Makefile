@@ -8,10 +8,9 @@ INCLUDES := libft.h
 OBJECTS = $(SOURCES:.c=.o)
 MLX = minilibx-linux/libmlx.a
 
-
 CC = gcc
 
-CFLAGS = -O3 -Wall -Wextra -g -I./libft -I./src -I./minilibx-linux -Werror #-fsanitize=address -fsanitize=undefined
+CFLAGS = -O3 -Wall -Wextra -g -I./libft -I. -I./minilibx-linux -Werror #-fsanitize=address -fsanitize=undefined
 
 all: $(NAME)
 

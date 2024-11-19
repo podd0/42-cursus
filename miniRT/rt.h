@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 21:58:35 by apuddu            #+#    #+#             */
-/*   Updated: 2024/11/02 22:23:41 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/11/03 00:07:43 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,51 @@ typedef struct s_img
 	float						*z_buf;
 }								t_img;
 
+typedef struct s_sphere
+{
+	t_vec3	center;
+	t_vec3	color;
+	float	radius;
+}	t_sphere;
+
+typedef struct s_plane
+{
+	t_vec3	normal;
+	t_vec3	color;
+}	t_plane;
+
+typedef struct s_cylinder
+{
+	t_vec3	center;
+	t_vec3	direction;
+	float	radius;
+	t_vec3	color;
+}	t_plane;
+
+
+typedef struct s_scene
+{
+	t_frame	camera;
+	float	fov;
+	t_vec3	ambient_color;
+	
+}	t_scene;
+
+
+t_vec3	add(const t_vec3 a, const t_vec3 b);
+float	dot(const t_vec3 a, const t_vec3 b);
+t_vec3	neg(const t_vec3 a);
+t_vec3	sub(const t_vec3 a, const t_vec3 b);
+t_vec3	scale(float f, const t_vec3 v);
+t_vec3	to_frame(t_vec3 p, t_frame fr);
+t_vec3	to_world(t_vec3 p, t_frame fr);
+float	deg_to_rad(float degrees);
+t_frame	rotx(float degrees);
+t_frame	roty(float degrees);
+t_frame	rotz(float degrees);
+t_frame	f_to_world(t_frame f1, t_frame ref);
+t_frame	f_to_frame(t_frame f1, t_frame ref);
+t_vec3	v_to_frame(t_vec3 p, t_frame fr);
+t_vec3	v_to_world(t_vec3 p, t_frame fr);
 
 #endif
