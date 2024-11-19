@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: apuddu <apuddu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 21:58:35 by apuddu            #+#    #+#             */
-/*   Updated: 2024/11/03 00:07:43 by apuddu           ###   ########.fr       */
+/*   Updated: 2024/11/19 15:32:01 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <libft.h>
 # include <vector.h>
 # include <mlx.h>
+# include <fcntl.h>
+# include <get_next_line.h>
 
 struct							s_vec3
 {
@@ -54,29 +56,54 @@ typedef struct s_sphere
 	float	radius;
 }	t_sphere;
 
+// represented by its normal, i.e. the vector that 
+// is perpendicular to it. Analytically it's:
+// plane = {x | x dot normal = normal dot normal} 
 typedef struct s_plane
 {
 	t_vec3	normal;
 	t_vec3	color;
 }	t_plane;
 
+// the axis of the cylinder is the segment ab, 
+// for each point in this segment the cylinder is made
+// of the circle of radius `radius` orthogonal to ab
 typedef struct s_cylinder
 {
-	t_vec3	center;
-	t_vec3	direction;
+	t_vec3	a;
+	t_vec3	b;
 	float	radius;
 	t_vec3	color;
-}	t_plane;
+}	t_cylinder;
 
+# define SPHERE 1
+# define PLANE 2
+# define CYLINDER 3
 
+// The scene contains the camera, the ambient color
+// and the objects that it contains with the respective types.
+// `scene.object->arr[i]` points to an object of type `scene.types->arr[i]`
 typedef struct s_scene
 {
 	t_frame	camera;
 	float	fov;
 	t_vec3	ambient_color;
-	
+	t_vec	*objects;
+	t_vi	*types;
 }	t_scene;
 
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*mlx_win;
+	t_img	curr;
+}	t_mlx;
+
+typedef struct s_ctx
+{
+	t_scene	*scene;
+	t_mlx	*mlx;
+}	t_ctx;
 
 t_vec3	add(const t_vec3 a, const t_vec3 b);
 float	dot(const t_vec3 a, const t_vec3 b);
@@ -93,5 +120,7 @@ t_frame	f_to_world(t_frame f1, t_frame ref);
 t_frame	f_to_frame(t_frame f1, t_frame ref);
 t_vec3	v_to_frame(t_vec3 p, t_frame fr);
 t_vec3	v_to_world(t_vec3 p, t_frame fr);
+
+t_scene	*parse(char *filename);
 
 #endif
