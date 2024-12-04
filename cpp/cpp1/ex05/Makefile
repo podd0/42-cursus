@@ -6,18 +6,18 @@
 #    By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/03 18:13:07 by apuddu            #+#    #+#              #
-#    Updated: 2024/11/26 19:32:50 by apuddu           ###   ########.fr        #
+#    Updated: 2024/11/26 19:11:56 by apuddu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Harl
+NAME = harlFilter
 
 SOURCES  := $(wildcard *.cpp)
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
 CC = c++
-CFLAGS = -O3 -Wall -Wextra -Werror -g -std=c++98 -Wno-implicit-fallthrough #-fsanitize=address -fsanitize=undefined
+CFLAGS = -O3 -Wall -Wextra -Werror -g -std=c++98 #-fsanitize=address -fsanitize=undefined
 
 all: $(NAME)
 

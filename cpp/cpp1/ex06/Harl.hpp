@@ -10,8 +10,10 @@ private:
 	void warning( void );
 	void error( void );
 
+enum levels{DEBUG, INFO, WARNING, ERROR, NONE};
 public:
 	void complain( std::string level );
+
 };
 
 #endif

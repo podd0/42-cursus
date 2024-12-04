@@ -20,41 +20,18 @@ void Harl::error( void )
 	std::cout << "This is unacceptable! I want to speak to the manager now.\n";
 }
 
-
-
 void Harl::complain( std::string level )
 {
-	enum Harl::levels levels[4] = {DEBUG, INFO, WARNING, ERROR};
+	static void (Harl::*functions[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	static const std::string names[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	enum Harl::levels level_type = NONE;
 
 	for(int i = 0; i < 4; i++)
 	{
 		if (level == names[i])
 		{
-			level_type = levels[i];
-			break;
+			(this->*functions[i])();
+			return ;
 		}
 	}
-	switch (level_type)
-	{
-		case NONE:
-			std::cout << "[ Probably complaining about insignificant problems ]\n";
-			break;
-		case DEBUG:
-			std::cout << "[DEBUG]\n";
-			debug();
-			std::cout << "\n";
-		case INFO:
-			std::cout << "[INFO]\n";
-			info();
-			std::cout << "\n";
-		case WARNING:
-			std::cout << "[WARNING]\n";
-			warning();
-			std::cout << "\n";
-		case ERROR:
-			std::cout << "[ERROR]\n";
-			error();
-	}
+	std::cerr << "Level " << level << " is not valid\n";
 }
