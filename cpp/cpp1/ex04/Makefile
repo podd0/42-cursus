@@ -6,18 +6,18 @@
 #    By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/03 18:13:07 by apuddu            #+#    #+#              #
-#    Updated: 2024/12/04 17:02:39 by apuddu           ###   ########.fr        #
+#    Updated: 2024/12/04 17:27:48 by apuddu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = harlFilter
+NAME = ft_sed
 
 SOURCES  := $(wildcard *.cpp)
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
 CC = c++
-CFLAGS = -O3 -Wall -Wextra -Werror -g -std=c++98 #-fsanitize=address -fsanitize=undefined
+CFLAGS = -O3 -Wall -Wextra -Werror -g -std=c++98 -fsanitize=address -fsanitize=undefined
 
 all: $(NAME)
 
