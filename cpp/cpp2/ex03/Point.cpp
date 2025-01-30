@@ -1,7 +1,13 @@
 #include "Point.hpp"
+#include <iostream>
 
-Point::Point() : _x(0), _y(0) {}
-Point::Point(Fixed x, Fixed y) : _x(x), _y(y) {}
+Point::Point() : _x(0), _y(0) {
+	std::cout<<"Point created as 0, 0"<<std::endl;
+
+}
+Point::Point(const Fixed &x, const Fixed &y) : _x(x), _y(y) {
+	std::cout<<"Point created as "<<x<<", "<<y<<std::endl;
+}
 Point::Point(Point const &p){
 	*this = p;
 }
@@ -24,7 +30,7 @@ Fixed Point::getY() const
 
 Point Point::operator + (Point const &p) const
 {
-	return Point(getX() + p.getX(), getX() + p.getX());
+	return Point(getX() + p.getX(), getY() + p.getY());
 }
 
 
@@ -40,6 +46,7 @@ Point Point::operator - (Point const &p) const
 
 Fixed Point::cross(Point const &a, Point const &b) const
 {
+	std::cout<<"cross called\n";
 	return (a - *this).cross(b - *this);
 }
 

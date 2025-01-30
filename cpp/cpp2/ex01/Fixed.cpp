@@ -3,7 +3,7 @@
 #include "Fixed.hpp"
 
 int Fixed::precision = 8;
-float Fixed::power = 64.0;
+float Fixed::power = 256.0;
 
 Fixed::Fixed() : bits(0)
 {

@@ -6,7 +6,7 @@ private:
 	Fixed _x, _y;
 public:
 	Point();
-	Point(Fixed x, Fixed y);
+	Point(const Fixed &x, const Fixed &y);
 	Point(Point const &p);
 	~Point();
 

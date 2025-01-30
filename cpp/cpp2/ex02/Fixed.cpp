@@ -79,14 +79,14 @@ Fixed Fixed::Fixed::operator - (Fixed const &other) const
 Fixed Fixed::Fixed::operator * (Fixed const &other) const
 {
 	Fixed result;
-	result.setRawBits((getRawBits() * other.getRawBits()) >> precision);
+	result.setRawBits(( ((long)getRawBits()) * other.getRawBits()) >> precision);
 	return result;
 }
 
 Fixed Fixed::Fixed::operator / (Fixed const &other) const
 {
 	Fixed result;
-	result.setRawBits((getRawBits() << precision) / other.getRawBits());
+	result.setRawBits(( ((long)getRawBits()) << precision) / other.getRawBits());
 	return result;
 }
 
