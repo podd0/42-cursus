@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 22:13:52 by apuddu            #+#    #+#             */
-/*   Updated: 2024/11/02 22:13:52 by apuddu           ###   ########.fr       */
+/*   Updated: 2025/02/06 00:36:28 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,19 +105,19 @@ struct					s_vec
 	int					buf_size;
 };
 
-typedef struct s_vec	t_vec;
+typedef struct s_vec	t_vector;
 
-void					vec_push_back(t_vec *vec, void *elem);
-void					*vec_pop_back(t_vec *vec);
-void					vec_assign(t_vec *vec, int n, void *value);
-void					vec_resize(t_vec *vec, int n);
-t_vec					*vec_init(int n, void *value);
-t_vec					*vec_uninit(int n);
-void					vec_free(t_vec *vec);
-t_vec					*vec_copy(t_vec *vec);
-void					vec_map(t_vec *vec, void (*f)(void *));
-void					vec_map_sub(t_vec *vec, void *(*f)(void *));
-void					*vec_back(t_vec *vec);
+void					vec_push_back(t_vector *vec, void *elem);
+void					*vec_pop_back(t_vector *vec);
+void					vec_assign(t_vector *vec, int n, void *value);
+void					vec_resize(t_vector *vec, int n);
+t_vector				*vec_init(int n, void *value);
+t_vector				*vec_uninit(int n);
+void					vec_free(t_vector *vec);
+t_vector				*vec_copy(t_vector *vec);
+void					vec_map(t_vector *vec, void (*f)(void *));
+void					vec_map_sub(t_vector *vec, void *(*f)(void *));
+void					*vec_back(t_vector *vec);
 
 struct					s_vch
 {

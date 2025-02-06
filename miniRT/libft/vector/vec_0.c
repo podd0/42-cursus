@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 22:13:53 by apuddu            #+#    #+#             */
-/*   Updated: 2024/11/02 22:13:53 by apuddu           ###   ########.fr       */
+/*   Updated: 2025/02/06 00:35:47 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	vec_push_back(t_vec *vec, void *elem)
+void	vec_push_back(t_vector *vec, void *elem)
 {
 	int	new_buf_size;
 	int	c_size;
@@ -33,7 +33,7 @@ void	vec_push_back(t_vec *vec, void *elem)
 	vec->size++;
 }
 
-void	*vec_pop_back(t_vec *vec)
+void	*vec_pop_back(t_vector *vec)
 {
 	if (vec->size == 0)
 	{
@@ -44,7 +44,7 @@ void	*vec_pop_back(t_vec *vec)
 	return (vec->arr[vec->size]);
 }
 
-void	vec_assign(t_vec *vec, int n, void *value)
+void	vec_assign(t_vector *vec, int n, void *value)
 {
 	int	i;
 
@@ -60,9 +60,9 @@ void	vec_assign(t_vec *vec, int n, void *value)
 	}
 }
 
-void	vec_resize(t_vec *vec, int n)
+void	vec_resize(t_vector *vec, int n)
 {
-	t_vec	old;
+	t_vector	old;
 
 	old = *vec;
 	vec->size = n;

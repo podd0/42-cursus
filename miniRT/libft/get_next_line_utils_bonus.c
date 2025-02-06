@@ -6,11 +6,11 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 12:48:12 by apuddu            #+#    #+#             */
-/*   Updated: 2024/09/10 18:00:30 by apuddu           ###   ########.fr       */
+/*   Updated: 2025/02/05 19:49:56 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 #include <stddef.h>
 #include <stdlib.h>
 
@@ -45,15 +45,6 @@ size_t	ft_strcpy(char *dst, char *src, size_t i)
 	return (i);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 int	has_end(char *buf)
 {

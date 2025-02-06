@@ -6,11 +6,11 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 00:58:19 by apuddu            #+#    #+#             */
-/*   Updated: 2024/09/10 18:00:18 by apuddu           ###   ########.fr       */
+/*   Updated: 2025/02/05 19:48:10 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 #include <stdlib.h>
 #include <unistd.h>
 
