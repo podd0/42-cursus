@@ -10,7 +10,7 @@ MLX = minilibx-linux/libmlx.a
 
 CC = gcc
 
-CFLAGS = -O3 -Wall -Wextra -g -I./libft -I. -I./minilibx-linux -Werror #-fsanitize=address -fsanitize=undefined
+CFLAGS =  -Wall -Wextra -g -I./libft -I. -I./minilibx-linux  -flto -O3 #-fsanitize=address -fsanitize=undefined #-Werror
 
 all: $(NAME)
 
@@ -18,7 +18,7 @@ $(MLX):
 	make -C minilibx-linux
 
 $(NAME): $(OBJECTS) $(MLX)
-	$(CC) $(CFLAGS) -o $@ $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $(OBJECTS) -lm -Lminilibx-linux -lmlx -lXext -lX11 
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $? -o $@
