@@ -10,7 +10,7 @@ MLX = minilibx-linux/libmlx.a
 
 CC = gcc
 
-CFLAGS =  -Wall -Wextra -g -I./libft -I. -I./minilibx-linux  -flto -O3 #-fsanitize=address -fsanitize=undefined #-Werror
+CFLAGS = -flto -O3  -Wall -Wextra -g -I./libft -I. -I./minilibx-linux #-fsanitize=address -fsanitize=undefined #-Werror 
 
 all: $(NAME)
 

@@ -19,3 +19,13 @@ t_vec3	norm(t_vec3 v, float target_len)
 {
 	return scale(target_len/vec_length(v), v);
 }
+
+t_vec3	pairwise_mul(t_vec3 a, t_vec3 b)
+{
+	return ((t_vec3){a.x * b.x, a.y * b.y, a.z * b.z});
+}
+
+t_vec3	pairwise_div(t_vec3 a, t_vec3 b)
+{
+	return ((t_vec3){a.x / b.x, a.y / b.y, a.z / b.z});
+}

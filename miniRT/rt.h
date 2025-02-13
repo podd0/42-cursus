@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 21:58:35 by apuddu            #+#    #+#             */
-/*   Updated: 2025/02/11 19:53:34 by apuddu           ###   ########.fr       */
+/*   Updated: 2025/02/12 20:22:08 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@
 
 # define WIN_W 1600
 # define WIN_H 800
-
+# define N_BOUNCES 4
+# define ACES_A 2.51f
+# define ACES_B 0.03f
+# define ACES_C 2.43f
+# define ACES_D 0.59f
+# define ACES_E 0.14f
 struct							s_vec3
 {
 	float						x;
@@ -144,6 +149,7 @@ typedef struct s_ctx
 	void	*mlx;
 	void	*mlx_win;
 	t_img	*img;
+	t_vec3	*img_vec;
 }	t_ctx;
 
 t_vec3	add(const t_vec3 a, const t_vec3 b);
@@ -154,6 +160,8 @@ t_vec3	sub(const t_vec3 a, const t_vec3 b);
 t_vec3	scale(float f, const t_vec3 v);
 t_vec3	norm(t_vec3 v, float target_len);
 float	vec_length(t_vec3 v);
+t_vec3	pairwise_mul(t_vec3 a, t_vec3 b);
+t_vec3	pairwise_div(t_vec3 a, t_vec3 b);
 
 t_vec3	to_frame(t_vec3 p, t_frame fr);
 t_vec3	to_world(t_vec3 p, t_frame fr);
@@ -190,6 +198,10 @@ t_vec3	norm_color(t_vec3 color);
 
 
 void	trace(t_ctx *ctx);
+t_shape	*intersect_scene(t_vec3 *p, t_vec3 direction, t_scene *scene, t_vec3 o);
+int		is_shadow(t_vec3 o, t_vec3 d, t_scene *scene, float len);
+t_vec3	shade_ray(t_vec3 direction, t_vec3 o, t_scene *scene, int depth);
+
 void	pvec(t_vec3 v);
 
 

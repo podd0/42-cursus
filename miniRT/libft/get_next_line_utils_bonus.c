@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 12:48:12 by apuddu            #+#    #+#             */
-/*   Updated: 2025/02/05 19:49:56 by apuddu           ###   ########.fr       */
+/*   Updated: 2025/02/12 18:29:05 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ size_t	ft_strcpy(char *dst, char *src, size_t i)
 	*dst = '\0';
 	return (i);
 }
-
 
 int	has_end(char *buf)
 {

@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 22:59:28 by apuddu            #+#    #+#             */
-/*   Updated: 2025/02/11 19:53:24 by apuddu           ###   ########.fr       */
+/*   Updated: 2025/02/12 19:59:00 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ t_vec3	parse_ambient(char **args, int *fail)
 		return ((t_vec3){0, 0, 0});
 	}
 	res = parse_vec(args[2], fail);
-	return (scale(f, res));
+	return (scale(1.0/255.0* f, res));
 }
 
 void	set_xy_from_z(t_frame *camera_frame)
@@ -178,12 +178,13 @@ int parse_light(t_vector *lights, char **args)
 	t_light	*light;
 	int		fail;
 
+	fail = 0;
 	if (arg_len(args) != 4)
 		return (1);
 	light = malloc(sizeof(t_light));
 	light->pos = parse_vec(args[1], &fail);
 	light->color = parse_vec(args[3], &fail);
-	light->color = scale(parse_float(args[2], &fail), light->color);
+	light->color = scale(1.0/255.0 * parse_float(args[2], &fail), light->color);
 	vec_push_back(lights, light);
 	return (fail);
 }
@@ -202,7 +203,7 @@ t_shape	parse_sphere(char **args, int *fail, t_methods *methods)
 	sphere = malloc(sizeof(t_sphere));
 	sphere->center = parse_vec(args[1], fail);
 	sphere->radius = parse_float(args[2], fail) / 2;
-	shape.color = parse_vec(args[3], fail);
+	shape.color = scale(1.0/255.0, parse_vec(args[3], fail));
 	shape.obj = (void *)sphere;
 	shape.methods = methods;
 	return (shape);
@@ -224,7 +225,7 @@ t_shape	parse_plane(char **args, int *fail, t_methods *methods)
 	point = parse_vec(args[1], fail);
 	plane->normal = norm(plane->normal, 1.0);
 	plane->offset = dot(plane->normal, point);
-	shape.color = parse_vec(args[3], fail);
+	shape.color = scale(1.0/255.0, parse_vec(args[3], fail));
 	shape.obj = (void *)plane;
 	shape.methods = methods;
 	return (shape);
@@ -253,7 +254,7 @@ t_shape	parse_cylinder(char **args, int *fail, t_methods *methods)
 	cylinder->b = add(center, scale(len*0.5, axis));
 	cylinder->height = len;
 	cylinder->fr = z_collinear_to_vec(sub(cylinder->b, cylinder->a), cylinder->a);
-	shape.color = parse_vec(args[5], fail);
+	shape.color = scale(1.0/255.0, parse_vec(args[5], fail));
 	shape.obj = cylinder;
 	shape.methods = methods;
 	return (shape);

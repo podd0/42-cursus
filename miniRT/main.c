@@ -6,7 +6,7 @@
 /*   By: apuddu <apuddu@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:33:37 by apuddu            #+#    #+#             */
-/*   Updated: 2025/02/11 20:23:51 by apuddu           ###   ########.fr       */
+/*   Updated: 2025/02/12 14:10:22 by apuddu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int main(int argc, char **argv)
 	// while(ctx.scene->fov < 180)
 	while(1)
 	{
+		printf("Done\n");
 		scanf("%f", &ctx.scene->fov);
 		// ctx.scene->fov += 1;
 		trace(&ctx);
