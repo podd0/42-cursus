@@ -13,7 +13,7 @@ MAIN_OBJECTS = $(MAIN_SOURCES:.c=.o)
 BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -g -I./libft -I. -I./src -Werror # -fsanitize=address -fsanitize=undefined
+CFLAGS = -Wall -Wextra -g -I./libft -I. -I./src -Werror -fsanitize=address -fsanitize=undefined
 
 all: $(NAME)
 

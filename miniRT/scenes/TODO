@@ -1,5 +1,0 @@
-i colori sono attenuazione (point-wise prodotto con la luce)
-la luce in un punto è una media pesata tra point lights e ambient light (questo moltiplicato per l'attenuazione e ritornato ricorsivamente)
-- come scegliere il peso?
-
-
